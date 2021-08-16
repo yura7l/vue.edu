@@ -1,0 +1,31 @@
+body {
+  background-color: DarkSlateGray;
+}
+section {
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+}
+section label {
+  display: block;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
+.list__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.list__item-danger {
+  background-color: #fff1f1;
+}
+.list__item .bold {
+  font-weight: bold;
+}
+/*# sourceMappingURL=style.css.map */

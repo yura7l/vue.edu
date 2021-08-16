@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js learning</title>
+
+    <link rel="stylesheet" href="/vendor/public/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body>
+    <section id="app_first">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h1>{{ appFirstTitle }}</h1>
+                    <h2>{{ appFirstCounter }}</h2>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-primary" v-on:click="appFirstCounter++">Plus</button>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" class="btn btn-danger" v-on:click="appFirstCounter-- ">Minus</button>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="app_second">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center mb-4" :style="{color: notesList.length < 5 ? 'darkred' : 'darkblue'}">{{ appSecondTitle }}</h1>
+                    <div class="mb-3">
+                        <label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                :placeholder="appSecondPlaceholder"
+                                v-model="appSecondValue"
+                                @keypress.enter="noteCreate"
+                                :style="{
+                                    borderColor: appSecondValue.length > 9 ? 'red' : '#212529',
+                                    boxShadow: appSecondValue.length > 9 ? '0 0 0 0.25rem rgb(253 13 13 / 25%)' : '0 0 0 0.25rem rgb(13 110 253 / 25%)'
+                                }"
+                            />
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-primary" v-on:click="noteCreate">Add</button>
+                    </div>
+                    <hr>
+                    <ul v-if="notesList.length !== 0" class="list">
+                        <li :class="['list__item', {'list__item-danger': noteItem.length > 5}]" v-for="(noteItem, i) in notesList">
+                            <span :class="noteItem.length > 5 ? 'bold' : ''">{{ i + 1 }}. {{ textUppercase(noteItem) }}</span>
+                            <button :class="{'btn btn-warning': true, 'btn-danger' : noteItem.length > 5}" @click="noteRemove(i, $event)">Remove</button>
+                        </li>
+                        <li>
+                            <hr>
+                        </li>
+                        <li>
+                            <strong>Count: {{ notesList.length }}</strong> | Double count: {{ doubleCountComputed }}
+                        </li>
+                    </ul>
+                    <p v-else>Notes list is empty. Please create your first note</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/vendor/public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="/assets/js/app.js"></script>
+
+</body>
+</html>

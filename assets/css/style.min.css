@@ -1,0 +1,1 @@
+body{background-color:#2f4f4f}section{max-width:900px;margin:100px auto;padding:40px;background-color:#fff;border-radius:10px}section label{display:block}.list{display:flex;flex-direction:column;list-style:none;padding:0}.list__item{display:flex;justify-content:space-between;margin-bottom:10px}.list__item-danger{background-color:#fff1f1}.list__item .bold{font-weight:700}
