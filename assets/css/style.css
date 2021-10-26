@@ -28,4 +28,95 @@ section label {
 .list__item .bold {
   font-weight: bold;
 }
+.todo {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+}
+.todo__list {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 10px;
+}
+.todo__list-item {
+  display: grid;
+  grid-template-columns: 30px 1fr 140px;
+  align-items: center;
+  grid-column-gap: 10px;
+}
+.todo__list-item-checkbox {
+  position: relative;
+}
+.todo__list-item-checkbox label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.todo__list-item-checkbox label:before,
+.todo__list-item-checkbox label:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+}
+.todo__list-item-checkbox label:before {
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 1px solid dimgrey;
+  border-radius: 3px;
+}
+.todo__list-item-checkbox label:after {
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 2px;
+  opacity: 0;
+  visibility: hidden;
+}
+.todo__list-item-checkbox input[type="checkbox"] {
+  opacity: 0;
+  visibility: hidden;
+}
+.todo__list-item-checkbox input[type="checkbox"]:checked + label:before {
+  background: seagreen;
+}
+.todo__list-item-checkbox input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  visibility: visible;
+}
+.todo__list-item-text input {
+  width: 100%;
+}
+.todo__list-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-column-gap: 10px;
+}
+.todo__list-item-done input[type="checkbox"] {
+  opacity: 0;
+  visibility: hidden;
+}
+.todo__list-item-done input[type="checkbox"]:checked + label:before {
+  background: dimgrey;
+}
+.todo__list-item-done .todo__list-item-text {
+  text-decoration: line-through;
+  color: darkgrey;
+}
+.todo__new {
+  display: grid;
+  grid-template-rows: 1fr;
+  padding-top: 30px;
+  border-top: 1px solid lightgrey;
+}
+.todo__new input {
+  width: 100%;
+}
 /*# sourceMappingURL=style.css.map */

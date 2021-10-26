@@ -29,3 +29,107 @@ section{
     }
   }
 }
+
+.todo{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+  &__list{
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 10px;
+    &-item{
+      display: grid;
+      grid-template-columns: 30px 1fr 140px;
+      align-items: center;
+      grid-column-gap: 10px;
+      &-checkbox{
+        position: relative;
+        label{
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          &:before,
+          &:after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all .3s;
+          }
+          &:before{
+            left: 0;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 1px solid dimgrey;
+            border-radius: 3px;
+          }
+          &:after{
+            left: 4px;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 2px;
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+        input[type="checkbox"]{
+          opacity: 0;
+          visibility: hidden;
+          &:checked{
+            &+label{
+              &:before{
+                background: seagreen;
+              }
+              &:after{
+                opacity: 1;
+                visibility: visible;
+              }
+            }
+          }
+        }
+      }
+      &-text{
+        input{
+          width: 100%;
+        }
+      }
+      &-actions{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        grid-column-gap: 10px;
+      }
+      &-done{
+        input[type="checkbox"]{
+          opacity: 0;
+          visibility: hidden;
+          &:checked{
+            &+label{
+              &:before{
+                background: dimgrey;
+              }
+            }
+          }
+        }
+        .todo__list-item-text{
+          text-decoration: line-through;
+          color: darkgrey;
+        }
+      }
+    }
+  }
+  &__new{
+    display: grid;
+    grid-template-rows: 1fr;
+    padding-top: 30px;
+    border-top: 1px solid lightgrey;
+    input{
+      width: 100%;
+    }
+  }
+}
