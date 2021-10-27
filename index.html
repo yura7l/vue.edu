@@ -12,49 +12,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Checklist</h1>
+                    <h1>{{ appThirdTitle }}</h1>
                 </div>
                 <div class="todo">
-                    <div class="todo__list">
-                        <div class="todo__list-item">
+                    <div class="todo__list" v-if="todoList.length !== 0">
+                        <div v-for="(todoItem, i) in todoList" :class="['todo__list-item', {'todo__list-item-done': todoItem.status === 2 }]">
                             <div class="todo__list-item-checkbox">
-                                <input type="checkbox" name="item-1" id="item-1">
-                                <label for="item-1"></label>
+                                <input type="checkbox" :name="['item-'+todoItem.id]" :id="['item-'+todoItem.id]" @change="itemChangeStatus(todoItem.id, $event)">
+                                <label :for="['item-'+todoItem.id]"></label>
                             </div>
-                            <div class="todo__list-item-text">Lorem ipsum dolor</div>
-                            <div class="todo__list-item-actions">
-                                <button class="btn btn-primary todo__list-item-edit">Edit</button>
-                                <button class="btn btn-danger todo__list-item-delete">Delete</button>
-                            </div>
-                        </div>
-                        <div class="todo__list-item todo__list-item-done">
-                            <div class="todo__list-item-checkbox">
-                                <input type="checkbox" name="item-2" id="item-2">
-                                <label for="item-2"></label>
-                            </div>
-                            <div class="todo__list-item-text">Lorem ipsum dolor</div>
-                            <div class="todo__list-item-actions">
-                                <button class="btn btn-primary todo__list-item-edit">Edit</button>
-                                <button class="btn btn-danger todo__list-item-delete">Delete</button>
-                            </div>
-                        </div>
-                        <div class="todo__list-item">
-                            <div class="todo__list-item-checkbox">
-                                <input type="checkbox" name="item-3" id="item-3">
-                                <label for="item-3"></label>
-                            </div>
+
                             <div class="todo__list-item-text">
-                                <input type="text" name="edit-3" value="Lorem ipsum dolor">
+                                <input v-if="todoItem.edit === true" type="text" :name="['item-'+todoItem.id]" :value="[todoItem.value]" v-model="todoList[i].value" @keypress.enter="itemSave(todoItem.id, $event)">
+                                <span v-else>{{ todoItem.value }}</span>
                             </div>
-                            <div class="todo__list-item-actions">
-                                <button class="btn btn-primary todo__list-item-save">Save</button>
-                                <button class="btn btn-secondary todo__list-item-delete">Cancel</button>
+                            <div class="todo__list-item-actions" v-if="todoItem.edit === true">
+                                <button class="btn btn-primary todo__list-item-save" @click="itemSave(todoItem.id, $event)">Save</button>
+                                <button class="btn btn-secondary todo__list-item-delete" @click="itemCancel(todoItem.id, $event)">Cancel</button>
+                            </div>
+                            <div class="todo__list-item-actions" v-else>
+                                <button class="btn btn-primary todo__list-item-edit" @click="itemEdit(todoItem.id, $event)">Edit</button>
+                                <button class="btn btn-danger todo__list-item-delete" @click="itemRemove(todoItem.id, $event)">Delete</button>
                             </div>
                         </div>
                     </div>
+                    <p class="todo__empty" v-else>{{ appThirdEmpty }}</p>
                     <div class="todo__new">
                         <label>
-                            <input type="text" name="new" placeholder="Enter new list item">
+                            <input type="text" name="new" :placeholder="appThirdPlaceholder" v-model="appThirdValue" @keypress.enter="itemCreate">
                         </label>
                     </div>
                 </div>
