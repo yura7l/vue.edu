@@ -93,6 +93,9 @@ section label {
 .todo__list-item-text input {
   width: 100%;
 }
+.todo__list-item-text input.error {
+  border-color: darkred;
+}
 .todo__list-item-actions {
   display: flex;
   align-items: center;

@@ -21,9 +21,8 @@
                                 <input type="checkbox" :name="['item-'+todoItem.id]" :id="['item-'+todoItem.id]" @change="itemChangeStatus(todoItem.id, $event)">
                                 <label :for="['item-'+todoItem.id]"></label>
                             </div>
-
                             <div class="todo__list-item-text">
-                                <input v-if="todoItem.edit === true" type="text" :name="['item-'+todoItem.id]" :value="[todoItem.value]" v-model="todoList[i].value" @keypress.enter="itemSave(todoItem.id, $event)">
+                                <input v-if="todoItem.edit === true" type="text" :name="['item-'+todoItem.id]" :value="[appThirdValueEdit]" v-model="appThirdValueEdit" @keypress.enter="itemSave(todoItem.id, $event)">
                                 <span v-else>{{ todoItem.value }}</span>
                             </div>
                             <div class="todo__list-item-actions" v-if="todoItem.edit === true">

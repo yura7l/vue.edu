@@ -5,16 +5,17 @@ const AppThird = {
             appThirdPlaceholder: 'Enter new list item',
             appThirdEmpty: 'To do list is empty. Please add first item',
             appThirdValue: '',
+            appThirdValueEdit: '',
             todoList: [
-                {id: 0, value: 'Lorem ipsum dolor', status: 1, edit: false},
-                {id: 1, value: 'Lorem ipsum dolor', status: 1, edit: false}
+                {id: 0, value: 'Lorem ipsum dolor', status: 1, edit: false, error: false},
+                {id: 1, value: 'Lorem ipsum dolor', status: 1, edit: false, error: false}
             ]
         }
     },
     methods: {
         itemCreate(event) {
             if(this.appThirdValue){
-                this.todoList.push({id: this.todoList.length, value: this.appThirdValue, status: 1})
+                this.todoList.push({id: this.todoList.length, value: this.appThirdValue, status: 1, edit: false, error: false})
                 this.appThirdValue = ''
             }
         },
@@ -32,19 +33,24 @@ const AppThird = {
             }else{
                 this.todoList[i].status = 1
             }
+            //TODO: fix id's (like in delete method)
         },
         itemEdit(i, event) {
             this.todoList[i].edit = true
+            this.appThirdValueEdit = this.todoList[i].value
         },
         itemSave(i, event) {
-            console.log(111)
-            this.todoList[i].edit = false
+            if(this.appThirdValueEdit.length > 0){
+                this.todoList[i].edit = false
+                this.todoList[i].value = this.appThirdValueEdit
+                this.todoList[i].error = false
+            }else{
+                this.itemRemove(i, event)
+            }
         },
         itemCancel(i, event) {
             this.todoList[i].edit = false
-        },
-        itemChange(i, event) {
-
+            this.todoList[i].error = false
         }
     },
     computed: {
