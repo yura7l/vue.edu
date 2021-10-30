@@ -83,10 +83,10 @@ section label {
   opacity: 0;
   visibility: hidden;
 }
-.todo__list-item-checkbox input[type="checkbox"]:checked + label:before {
+.todo__list-item-checkbox input[type="checkbox"].checked + label:before {
   background: seagreen;
 }
-.todo__list-item-checkbox input[type="checkbox"]:checked + label:after {
+.todo__list-item-checkbox input[type="checkbox"].checked + label:after {
   opacity: 1;
   visibility: visible;
 }
@@ -106,16 +106,22 @@ section label {
   opacity: 0;
   visibility: hidden;
 }
-.todo__list-item-done input[type="checkbox"]:checked + label:before {
+.todo__list-item-done input[type="checkbox"].checked + label:before {
   background: dimgrey;
 }
 .todo__list-item-done .todo__list-item-text {
   text-decoration: line-through;
   color: darkgrey;
 }
+.todo__empty {
+  margin: 0;
+  color: grey;
+}
 .todo__new {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  grid-column-gap: 15px;
   padding-top: 30px;
   border-top: 1px solid lightgrey;
 }

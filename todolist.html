@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do list on Vue.js</title>
+
+    <link rel="stylesheet" href="/vendor/public/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body>
+<section id="todolist">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>{{ todoTitle }}</h1>
+            </div>
+            <div class="todo">
+                <div class="todo__list" v-if="todoList.length !== 0">
+                    <div v-for="(todoItem, i) in todoList" :class="['todo__list-item', {'todo__list-item-done': todoItem.status === 2 }]">
+                        <div class="todo__list-item-checkbox">
+                            <input type="checkbox" :class="todoItem.status === 2 ? 'checked' : ''" :name="['item-'+todoItem.id]" :id="['item-'+todoItem.id]" @change="itemChangeStatus(todoItem.id, $event)">
+                            <label :for="['item-'+todoItem.id]"></label>
+                        </div>
+                        <div class="todo__list-item-text">
+                            <input v-if="todoItem.edit === true" type="text" :name="['item-'+todoItem.id]" :value="[todoValueEdit]" v-model="todoValueEdit" @keypress.enter="itemSave(todoItem.id, $event)">
+                            <span v-else>{{ todoItem.value }}</span>
+                        </div>
+                        <div class="todo__list-item-actions" v-if="todoItem.edit === true">
+                            <button class="btn btn-primary todo__list-item-save" @click="itemSave(todoItem.id, $event)">Save</button>
+                            <button class="btn btn-secondary todo__list-item-delete" @click="itemCancel(todoItem.id, $event)">Cancel</button>
+                        </div>
+                        <div class="todo__list-item-actions" v-else>
+                            <button class="btn btn-primary todo__list-item-edit" @click="itemEdit(todoItem.id, $event)">Edit</button>
+                            <button class="btn btn-danger todo__list-item-delete" @click="itemRemove(todoItem.id, $event)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <p class="todo__empty" v-else>{{ todoEmpty }}</p>
+                <div class="todo__new">
+                    <label>
+                        <input type="text" name="new" :placeholder="todoPlaceholder" v-model="todoValue" @keypress.enter="itemCreate">
+                    </label>
+                    <button type="button" class="btn btn-primary todo__list-item-add" @click="itemCreate">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/vendor/public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="/assets/js/todolist.js"></script>
+
+</body>
+</html>

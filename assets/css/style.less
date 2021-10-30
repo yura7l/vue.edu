@@ -80,7 +80,7 @@ section{
         input[type="checkbox"]{
           opacity: 0;
           visibility: hidden;
-          &:checked{
+          &.checked{
             &+label{
               &:before{
                 background: seagreen;
@@ -111,7 +111,7 @@ section{
         input[type="checkbox"]{
           opacity: 0;
           visibility: hidden;
-          &:checked{
+          &.checked{
             &+label{
               &:before{
                 background: dimgrey;
@@ -126,9 +126,15 @@ section{
       }
     }
   }
+  &__empty{
+    margin: 0;
+    color: grey;
+  }
   &__new{
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    grid-column-gap: 15px;
     padding-top: 30px;
     border-top: 1px solid lightgrey;
     input{
