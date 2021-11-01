@@ -6,9 +6,7 @@ const AppThird = {
             todoEmpty: 'To do list is empty. Please add first item',
             todoValue: '',
             todoValueEdit: '',
-            todoList: [
-                /*{id: 0, value: 'Lorem ipsum dolor', status: 1, edit: false, error: false}*/
-            ]
+            todoList: this.getList() ? JSON.parse(this.getList()) : []
         }
     },
     methods: {
@@ -17,6 +15,7 @@ const AppThird = {
                 this.todoList.push({id: this.todoList.length, value: this.todoValue, status: 1, edit: false, error: false})
                 this.todoValue = ''
             }
+            this.setList()
         },
         itemRemove(i, event) {
             for(j in this.todoList){
@@ -25,6 +24,7 @@ const AppThird = {
                     break
                 }
             }
+            this.setList()
         },
         itemChangeStatus(i, event) {
             for(j in this.todoList){
@@ -37,6 +37,7 @@ const AppThird = {
                     break
                 }
             }
+            this.setList()
         },
         itemEdit(i, event) {
             for(j in this.todoList){
@@ -50,6 +51,7 @@ const AppThird = {
                     }
                 }
             }
+            this.setList()
         },
         itemSave(i, event) {
             if(this.todoValueEdit.length > 0){
@@ -64,6 +66,7 @@ const AppThird = {
             }else{
                 this.itemRemove(i, event)
             }
+            this.setList()
         },
         itemCancel(i, event) {
             for(j in this.todoList){
@@ -73,6 +76,13 @@ const AppThird = {
                     break
                 }
             }
+            this.setList()
+        },
+        getList(){
+            return localStorage.getItem('toDoList')
+        },
+        setList(){
+            localStorage.setItem('toDoList', JSON.stringify(this.todoList))
         }
     },
     computed: {
