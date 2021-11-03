@@ -1,8 +1,8 @@
 const AppSearch = {
     data() {
         return {
-            searchTitle: 'To do list',
-            searchPlaceholder: 'To do list',
+            searchTitle: 'Quick Search',
+            searchPlaceholder: 'Start typing to search',
             articles: [
                 {
                     id: 0,
@@ -48,10 +48,13 @@ const AppSearch = {
                 },
             ],
             searchQuery: '',
+            viewType: 'list'
         }
     },
     methods: {
-
+        changeView(type){
+            this.viewType = type
+        }
     },
     computed: {
         searchArticles(){
