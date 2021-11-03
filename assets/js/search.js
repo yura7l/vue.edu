@@ -48,12 +48,19 @@ const AppSearch = {
                 },
             ],
             searchQuery: '',
-            viewType: 'list'
+            viewType: this.getViewType() ? this.getViewType() :'list'
         }
     },
     methods: {
         changeView(type){
             this.viewType = type
+            this.saveViewType()
+        },
+        getViewType(){
+            return localStorage.getItem('viewType')
+        },
+        saveViewType(){
+            localStorage.setItem('viewType', this.viewType)
         }
     },
     computed: {
