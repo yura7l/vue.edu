@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple search on Vue.js</title>
+
+    <link rel="stylesheet" href="/vendor/public/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body>
+<section id="search">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>{{ searchTitle }}</h1>
+            </div>
+            <div class="search">
+                <div class="search__input">
+                    <label>
+                        <input type="text" name="search" :placeholder="searchPlaceholder" v-model="searchQuery">
+                    </label>
+                </div>
+                <div class="search__articles">
+                    <div class="search__articles-item" v-for="(article, i) in searchArticles">
+                        <div class="search__articles-img">
+                            <img :src="article.picture" alt="article.title">
+                        </div>
+                        <div class="search__articles-body">
+                            <div class="search__articles-date">{{ article.date }}</div>
+                            <a href="javascript:void(0);" class="search__articles-title">{{ article.title }}</a>
+                            <div class="search__articles-text">{{ article.preview_text }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/vendor/public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="/assets/js/search.js"></script>
+
+</body>
+</html>
