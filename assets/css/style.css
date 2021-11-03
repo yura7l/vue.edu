@@ -192,10 +192,12 @@ section label {
   border: none;
   transition: all 0.3s;
 }
-.search__views-button:hover {
+.search__views-button:hover,
+.search__views-button.active {
   background-color: royalblue;
 }
-.search__views-button:hover i {
+.search__views-button:hover i,
+.search__views-button.active i {
   background: white;
 }
 .search__views-button i {

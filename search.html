@@ -22,8 +22,8 @@
                 </div>
                 <div class="search__views">
                     <span class="search__views-label">Change view:</span>
-                    <button class="search__views-button search__views-button-list" @click="changeView('list')"><i></i><i></i><i></i></button>
-                    <button class="search__views-button search__views-button-block" @click="changeView('block')"><i></i><i></i><i></i><i></i></button>
+                    <button :class="['search__views-button search__views-button-list', {'active': viewType === 'list'}]" @click="changeView('list')"><i></i><i></i><i></i></button>
+                    <button :class="['search__views-button search__views-button-block', {'active': viewType === 'block'}]" @click="changeView('block')"><i></i><i></i><i></i><i></i></button>
                 </div>
                 <div :class="['search__articles', {'search__articles-block': viewType === 'block'}]">
                     <div class="search__articles-item" v-for="(article, i) in searchArticles">
