@@ -32,8 +32,8 @@
                         </div>
                         <div class="search__articles-body">
                             <div class="search__articles-date">{{ article.date }}</div>
-                            <a href="javascript:void(0);" class="search__articles-title">{{ article.title }}</a>
-                            <div class="search__articles-text">{{ article.preview_text }}</div>
+                            <a href="javascript:void(0);" class="search__articles-title" :id="'title-'+article.id">{{ article.title }}</a>
+                            <div class="search__articles-text" :id="'text-'+article.id">{{ article.preview_text }}</div>
                         </div>
                     </div>
                 </div>

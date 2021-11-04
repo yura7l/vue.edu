@@ -66,13 +66,18 @@ const AppSearch = {
     computed: {
         searchArticles(){
             let searchResult = []
-            for (let i in this.articles){
-                let titleLower = this.articles[i].title.toLowerCase(),
-                    queryLower = this.searchQuery.toLowerCase()
+            if(this.searchQuery){
+                let queryLower = this.searchQuery.toLowerCase()
+                for (let i in this.articles){
+                    let titleLower = this.articles[i].title.toLowerCase(),
+                        previewTextLower = this.articles[i].preview_text.toLowerCase()
 
-                if(titleLower.indexOf(queryLower) >= 0){
-                    searchResult.push(this.articles[i])
+                    if(titleLower.indexOf(queryLower) >= 0 || previewTextLower.indexOf(queryLower) >= 0){
+                        searchResult.push(this.articles[i])
+                    }
                 }
+            }else{
+                searchResult = this.articles
             }
             return searchResult
         }
