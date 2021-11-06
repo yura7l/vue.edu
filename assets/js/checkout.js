@@ -65,6 +65,8 @@ const AppCheckout = {
             if(selectedCount > 2 && minPriceId !== false){
                 this.discount = this.servicesList[minPriceId].price / 2
                 total -= this.discount
+            }else{
+                this.discount = 0
             }
             return total
         }
