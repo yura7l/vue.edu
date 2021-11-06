@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple checkout on Vue.js</title>
+
+    <link rel="stylesheet" href="/vendor/public/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body>
+<section id="checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>{{ checkoutTitle }}</h1>
+            </div>
+            <div class="checkout">
+                <ul class="checkout__list">
+                    <li v-for="service in this.servicesList" :class="['checkout__list-item', {'active': service.added === true}]" @click="toggleService(service.id)">
+                        <span class="checkout__list-item-name">{{ service.name }}</span>
+                        <span class="checkout__list-item-price">{{ service.price }}</span>
+                    </li>
+                </ul>
+                <div class="checkout__total">
+                    <span class="checkout__total-caption">{{ checkoutSumCaption }}</span>
+                    <span class="checkout__total-value">{{ checkoutTotal }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/vendor/public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="/assets/js/checkout.js"></script>
+
+</body>
+</html>

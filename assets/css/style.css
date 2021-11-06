@@ -241,4 +241,47 @@ section label {
   top: calc(50% + 6px);
   left: calc(50% - 6px);
 }
+.checkout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+  margin: 20px 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+.checkout__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.checkout__list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.checkout__list-item:nth-child(odd) {
+  background-color: aliceblue;
+}
+.checkout__list-item:hover,
+.checkout__list-item.active {
+  background-color: lightblue;
+}
+.checkout__list-item-price:before {
+  content: '$';
+}
+.checkout__total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 5px;
+  border-top: 1px solid darkgrey;
+  font-weight: bold;
+}
+.checkout__total-value:before {
+  content: '$';
+}
 /*# sourceMappingURL=style.css.map */

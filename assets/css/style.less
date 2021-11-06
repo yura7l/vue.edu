@@ -263,3 +263,51 @@ section{
     }
   }
 }
+
+.checkout{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+  margin: 20px 0;
+  font-size: 18px;
+  line-height: 24px;
+  &__list{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    &-item{
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: all .3s;
+      &:nth-child(odd){
+        background-color: aliceblue;
+      }
+      &:hover,
+      &.active{
+        background-color: lightblue;
+      }
+      &-price{
+        &:before{
+          content: '$';
+        }
+      }
+    }
+  }
+  &__total{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 5px;
+    border-top: 1px solid darkgrey;
+    font-weight: bold;
+    &-value{
+      &:before{
+        content: '$';
+      }
+    }
+  }
+}
