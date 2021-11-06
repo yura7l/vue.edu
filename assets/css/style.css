@@ -318,4 +318,26 @@ section label {
 .checkout__total-value:before {
   content: '$';
 }
+.checkout__promo {
+  display: flex;
+  justify-content: flex-end;
+}
+.checkout__promo-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-column-gap: 10px;
+  padding: 8px 20px 8px 15px;
+  font-size: 14px;
+  line-height: 1;
+  color: white;
+  background-color: darkgreen;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.checkout__promo-terms {
+  margin-top: 20px;
+  font-size: 10px;
+  color: darkgrey;
+}
 /*# sourceMappingURL=style.css.map */
