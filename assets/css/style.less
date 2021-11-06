@@ -341,6 +341,14 @@ section{
       &:before{
         content: '$';
       }
+      &-old{
+        color: lightgrey;
+        text-decoration: line-through;
+      }
+      &-box{
+        display: flex;
+        grid-column-gap: 10px;
+      }
     }
   }
   &__promo{
@@ -355,7 +363,7 @@ section{
       font-size: 14px;
       line-height: 1;
       color: white;
-      background-color: darkgreen;
+      background-color: orange;
       border-bottom-left-radius: 20px;
       border-top-left-radius: 20px;
     }

@@ -22,8 +22,11 @@
                     </li>
                 </ul>
                 <div class="checkout__total">
-                    <span class="checkout__total-caption">{{ checkoutSumCaption }}</span>
-                    <span class="checkout__total-value">{{ checkoutTotal }}</span>
+                    <div class="checkout__total-caption">{{ checkoutSumCaption }}</div>
+                    <div class="checkout__total-value-box">
+                        <span v-if="this.discount" class="checkout__total-value checkout__total-value-old">{{ checkoutTotal + discount }}</span>
+                        <span class="checkout__total-value">{{ checkoutTotal }}</span>
+                    </div>
                 </div>
                 <div class="checkout__promo">
                     <div class="checkout__promo-inner">
