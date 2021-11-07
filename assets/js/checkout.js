@@ -63,7 +63,11 @@ const AppCheckout = {
                 }
             }
             if(selectedCount > 2 && minPriceId !== false){
-                this.discount = this.servicesList[minPriceId].price / 2
+                if(selectedCount === 3){
+                    this.discount = this.servicesList[minPriceId].price / 2
+                }else if(selectedCount === 4){
+                    this.discount = 150
+                }
                 total -= this.discount
             }else{
                 this.discount = 0
