@@ -28,6 +28,26 @@
     </div>
 </section>
 
+<section id="accordion_flush">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>{{ accordionTitle }}</h1>
+            </div>
+            <div class="accordion mt-4">
+                <div v-for="accordionItem in this.accordionList" :class="['accordion__item', {'accordion__item-opened': accordionItem.state === 'opened'}]">
+                    <button type="button" class="accordion__item-head" @click="toggleItem(accordionItem.id, $event)">{{ accordionItem.title }}</button>
+                    <div class="accordion__item-body">
+                        <div class="accordion__item-body-inner">
+                            {{ accordionItem.body }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <script src="/vendor/public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/vue@next"></script>
 <script src="/assets/js/accordion.js"></script>
