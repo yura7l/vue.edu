@@ -22,8 +22,8 @@
                     </div>
                     <div class="quiz__question-answers">
                         <div v-for="(answer, i) in currentQuestion.answers" class="form-check">
-                            <input class="form-check-input" :type="answer.type === 'multiple' ? 'checkbox' : 'radio'" :name="'question-'+currentQuestion.id" :id="'answer-'+answer.id" :value="answer.id" @change="toggleAnswer(answer.id)">
-                            <label class="form-check-label" :for="'answer-'+answer.id">
+                            <input class="form-check-input" :type="currentQuestion.type === 'multiple' ? 'checkbox' : 'radio'" :name="'question-'+currentQuestion.id" :id="'answer-'+currentQuestion.id+'-'+answer.id" :value="answer.id" @change="toggleAnswer(answer.id)" v-bind:checked="answer.isChecked">
+                            <label class="form-check-label" :for="'answer-'+currentQuestion.id+'-'+answer.id">
                                 {{ answer.value }}
                             </label>
                         </div>
@@ -36,7 +36,7 @@
                     <h3 class="quiz__end-title">Well done!</h3>
                     <div class="quiz__end-summary">
                         <div class="quiz__end-summary-caption">Your score:</div>
-                        <div class="quiz__end-summary-value">6/8</div>
+                        <div class="quiz__end-summary-value">{{ totalScore }}/{{ quizQuestions.length }}</div>
                     </div>
                 </div>
             </div>

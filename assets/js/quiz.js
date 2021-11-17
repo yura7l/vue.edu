@@ -55,7 +55,9 @@ const AppQuiz = {
                     type: 'multiple',
                     status: 0
                 }
-            ]
+            ],
+            scores: [],
+            totalScore: 0
         }
     },
     methods: {
@@ -68,7 +70,37 @@ const AppQuiz = {
             }
         },
         applyAnswer(){
+            this.calcScore()
             this.currentQuestion.status = 1
+        },
+        calcScore(){
+            if(this.currentQuestion.type === 'single'){
+                for (let i in this.currentQuestion.answers){
+                    if(this.currentQuestion.answers[i].isCorrect){
+                        this.scores[this.currentQuestion.id] = Number(this.currentQuestion.answers[i].isChecked)
+                        break
+                    }
+                }
+            }else{
+                let correctAnswers = 0,
+                    correctAnswersChecked = 0
+                for (let i in this.currentQuestion.answers){
+                    if(this.currentQuestion.answers[i].isCorrect){
+                        ++correctAnswers
+                        if(this.currentQuestion.answers[i].isChecked){
+                            ++correctAnswersChecked
+                        }
+                    }
+                }
+                this.scores[this.currentQuestion.id] = correctAnswersChecked / correctAnswers
+            }
+        },
+        calcTotalScore(){
+            let scoreSum = 0
+            for (let i in this.scores) {
+                scoreSum += this.scores[i]
+            }
+            this.totalScore = scoreSum
         }
     },
     computed: {
@@ -78,8 +110,12 @@ const AppQuiz = {
                     return this.quizQuestions[i]
                 }
             }
+            this.calcTotalScore()
             return []
         }
+    },
+    watch: {
+
     }
 }
 
