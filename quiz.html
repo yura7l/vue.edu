@@ -21,22 +21,10 @@
                         <p class="quiz__question-subtitle">Choose one answer</p>
                     </div>
                     <div class="quiz__question-answers">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Answer #1 First
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Answer #1 Second
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                            <label class="form-check-label" for="flexRadioDefault3">
-                                Answer #1 Third
+                        <div v-for="(answer, i) in currentQuestion.answers" class="form-check">
+                            <input class="form-check-input" :type="answer.type === 'multiple' ? 'checkbox' : 'radio'" :name="'question-'+currentQuestion.id" :id="'answer-'+answer.id" :value="answer.id" @change="toggleAnswer(answer.id)">
+                            <label class="form-check-label" :for="'answer-'+answer.id">
+                                {{ answer.value }}
                             </label>
                         </div>
                     </div>

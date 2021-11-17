@@ -10,17 +10,20 @@ const AppQuiz = {
                         {
                             id: 0,
                             value: 'Answer #1 First (correct)',
-                            isCorrect: true
+                            isCorrect: true,
+                            isChecked: false
                         },
                         {
                             id: 1,
                             value: 'Answer #1 Second',
-                            isCorrect: false
+                            isCorrect: false,
+                            isChecked: false
                         },
                         {
                             id: 2,
                             value: 'Answer #1 Third',
-                            isCorrect: false
+                            isCorrect: false,
+                            isChecked: false
                         }
                     ],
                     type: 'single',
@@ -33,29 +36,39 @@ const AppQuiz = {
                         {
                             id: 0,
                             value: 'Answer #2 First',
-                            isCorrect: false
+                            isCorrect: false,
+                            isChecked: false
                         },
                         {
                             id: 1,
                             value: 'Answer #2 Second (correct)',
-                            isCorrect: true
+                            isCorrect: true,
+                            isChecked: false
                         },
                         {
                             id: 2,
                             value: 'Answer #2 Third (correct)',
-                            isCorrect: true
+                            isCorrect: true,
+                            isChecked: false
                         }
                     ],
                     type: 'multiple',
                     status: 0
                 }
-            ],
-            quizAnswers: []
+            ]
         }
     },
     methods: {
+        toggleAnswer(answerId){
+            for (let i in this.currentQuestion.answers){
+                if(this.currentQuestion.answers[i].id === answerId){
+                    this.currentQuestion.answers[i].isChecked = true
+                    break
+                }
+            }
+        },
         applyAnswer(){
-
+            this.currentQuestion.status = 1
         }
     },
     computed: {
