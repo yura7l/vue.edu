@@ -179,7 +179,6 @@ const AppQuiz = {
             }
         },
         calcTotalScore(){
-            console.log(this.scores)
             let scoreSum = 0
             for (let i in this.scores) {
                 scoreSum += Number(this.scores[i])
