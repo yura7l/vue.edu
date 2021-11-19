@@ -15,7 +15,17 @@
                 <h1>{{ quizTitle }}</h1>
             </div>
             <div class="quiz mt-4">
-                <div v-if="currentQuestion.length !== 0" class="quiz__question">
+                <div v-if="checkStorage() && !decidedToContinue && !status && !this.totalScore" class="quiz__question">
+                    <div class="quiz__question-head">
+                        <h3 class="quiz__question-title">Continue previous session?</h3>
+                        <p class="quiz__question-subtitle">We found your not finished session. Would you like to continue?</p>
+                    </div>
+                    <div class="quiz__question-footer">
+                        <button class="btn btn-primary me-3" @click="continueQuiz()">Continue</button>
+                        <button class="btn btn-secondary" @click="startOver()">Start over</button>
+                    </div>
+                </div>
+                <div v-else-if="currentQuestion.length !== 0" class="quiz__question">
                     <div class="quiz__question-head">
                         <h3 class="quiz__question-title">{{ currentQuestion.title + currentQuestion.type }}</h3>
                         <p class="quiz__question-subtitle">{{ currentQuestion.type === 'single' ? 'Choose one answer' : 'Choose few answers' }}</p>

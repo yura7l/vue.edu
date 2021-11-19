@@ -130,7 +130,9 @@ const AppQuiz = {
             ],
             scores: [],
             totalScore: 0,
-            error: ''
+            error: '',
+            decidedToContinue: false,
+            status: 0
         }
     },
     methods: {
@@ -147,6 +149,9 @@ const AppQuiz = {
                 this.calcScore()
                 this.currentQuestion.status = 1
                 this.error = ''
+                this.status = 1
+                this.saveToStorage()
+                localStorage.setItem('quizStarted', 'yes');
             }else{
                 this.error = 'Choose answer to see next question!'
             }
@@ -174,11 +179,14 @@ const AppQuiz = {
             }
         },
         calcTotalScore(){
+            console.log(this.scores)
             let scoreSum = 0
             for (let i in this.scores) {
-                scoreSum += this.scores[i]
+                scoreSum += Number(this.scores[i])
             }
             this.totalScore = scoreSum
+            localStorage.setItem('totalScore', this.totalScore);
+            localStorage.removeItem('quizStarted');
         },
         hasAnswer(){
             let hasAnswer = false
@@ -189,6 +197,28 @@ const AppQuiz = {
                 }
             }
             return hasAnswer
+        },
+        saveToStorage(){
+            localStorage.setItem('scores', this.scores.join('|'));
+        },
+        checkStorage(){
+            return !!localStorage.getItem('quizStarted');
+        },
+        startOver(){
+            this.status = 0
+            this.totalScore = 0
+            localStorage.removeItem('scores');
+            localStorage.removeItem('totalScore');
+            localStorage.removeItem('quizStarted');
+            this.decidedToContinue = false
+            window.location.reload()
+        },
+        continueQuiz(){
+            this.scores = localStorage.getItem('scores').split('|')
+            for(let i in this.scores){
+                this.quizQuestions[i].status = 1
+            }
+            this.decidedToContinue = true
         }
     },
     computed: {
