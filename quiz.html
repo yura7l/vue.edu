@@ -17,8 +17,8 @@
             <div class="quiz mt-4">
                 <div v-if="currentQuestion.length !== 0" class="quiz__question">
                     <div class="quiz__question-head">
-                        <h3 class="quiz__question-title">Question #1</h3>
-                        <p class="quiz__question-subtitle">Choose one answer</p>
+                        <h3 class="quiz__question-title">{{ currentQuestion.title + currentQuestion.type }}</h3>
+                        <p class="quiz__question-subtitle">{{ currentQuestion.type === 'single' ? 'Choose one answer' : 'Choose few answers' }}</p>
                     </div>
                     <div class="quiz__question-answers">
                         <div v-for="(answer, i) in currentQuestion.answers" class="form-check">
@@ -31,6 +31,7 @@
                     <div class="quiz__question-footer">
                         <button class="btn btn-primary" @click="applyAnswer()">Next question</button>
                     </div>
+                    <div v-if="this.error" class="alert alert-danger">{{ this.error }}</div>
                 </div>
                 <div v-else class="quiz__end">
                     <h3 class="quiz__end-title">Well done!</h3>
