@@ -504,3 +504,56 @@ section{
     }
   }
 }
+
+.switcher{
+  --bg-lightness: calc(1 * 87% + 0 * 20%);
+  display: inline-flex;
+  align-items: baseline;
+  padding: 2px;
+  border-radius: 2em;
+  background-color: hsl(0 0% var(--bg-lightness));
+  &__container{
+    display: flex;
+  }
+  &__item{
+    position: relative;
+  }
+  &__control{
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: 0 0;
+    cursor: pointer;
+    &:checked{
+      &+.switcher__text{
+        opacity: 1;
+        background-color: white;
+      }
+    }
+  }
+  &__text{
+    opacity: .7;
+    margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    padding: 0.4em 0.67em;
+    border: 0;
+    font: inherit;
+    line-height: 1;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 2em;
+    transition: opacity .2s;
+  }
+}

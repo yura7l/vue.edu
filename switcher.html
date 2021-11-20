@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switcher on Vue.js</title>
+
+    <link rel="stylesheet" href="/vendor/public/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body>
+<section id="switcher">
+    <div class="container">
+        <div class="row">
+            <div class="switcher__container">
+                <div class="switcher">
+                    <label class="switcher__item">
+                        <input class="switcher__control" type="radio" name="color-theme" value="light">
+                        <span class="switcher__text">Light</span>
+                    </label>
+                    <label class="switcher__item">
+                        <input class="switcher__control" type="radio" name="color-theme" value="auto" checked>
+                        <span class="switcher__text">Auto</span>
+                    </label>
+                    <label class="switcher__item">
+                        <input class="switcher__control" type="radio" name="color-theme" value="dark">
+                        <span class="switcher__text">Dark</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/vendor/public/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="/assets/js/switcher.js"></script>
+
+</body>
+</html>
