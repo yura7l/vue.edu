@@ -11,12 +11,17 @@
 <section id="switcher">
     <div class="container">
         <div class="row">
-            <div class="switcher__container">
-                <div class="switcher">
-                    <label v-for="(option, i) in options" class="switcher__item">
-                        <input class="switcher__control" type="radio" name="color-theme" :value="option.id" v-model="state" @change="toggleSwitcher(option.id)">
-                        <span class="switcher__text">{{ option.title }}</span>
-                    </label>
+            <div class="col-12 text-center">
+                <h1>Switcher</h1>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="switcher__container">
+                    <div class="switcher">
+                        <label v-for="(option, i) in options" class="switcher__item">
+                            <input class="switcher__control" type="radio" name="color-theme" :value="option.id" v-model="state" @change="toggleSwitcher(option.id)">
+                            <span class="switcher__text">{{ option.title }}</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>

@@ -481,6 +481,7 @@ section label {
 }
 .switcher__container {
   display: flex;
+  justify-content: center;
 }
 .switcher__item {
   position: relative;
@@ -519,6 +520,6 @@ section label {
   color: inherit;
   background-color: transparent;
   border-radius: 2em;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
 }
 /*# sourceMappingURL=style.css.map */
