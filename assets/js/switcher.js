@@ -14,13 +14,21 @@ const AppSwitcher = {
                     id: 'dark',
                     title: 'Dark'
                 }],
-            state: 'auto',
+            state: this.checkState(),
         }
     },
     methods: {
         toggleSwitcher(state){
             this.state = state
-            console.log(this.state)
+            localStorage.setItem('switcher_state', state)
+        },
+        checkState(){
+            let storageState = localStorage.getItem('switcher_state')
+            if(storageState){
+                return storageState
+            }else{
+                return 'auto'
+            }
         }
     },
     computed: {
