@@ -23,15 +23,14 @@
     <link rel="stylesheet" href="assets/css/switcher/dark.min.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="assets/css/switcher/index.min.css">
 </head>
-<body class="sky">
-<div class="body"></div>
-<fieldset class="switcher">
-    <legend class="switcher__legend">Scheme</legend>
-    <input class="switcher__radio switcher__radio--light" type="radio" name="color-scheme" value="light" aria-label="Light">
-    <input class="switcher__radio switcher__radio--auto" type="radio" name="color-scheme" value="auto" aria-label="System" checked>
-    <input class="switcher__radio switcher__radio--dark" type="radio" name="color-scheme" value="dark" aria-label="Dark">
-    <div class="switcher__status"></div>
-</fieldset>
-<script src="assets/js/switcher-auto.js"></script>
+<body class="sky" id="app">
+    <div class="sun"></div>
+    <fieldset class="switcher">
+        <legend class="switcher__legend">{{ switcherTitle }}</legend>
+        <input v-for="radio in themes" :class="['switcher__radio', 'switcher__radio--'+radio.value]" type="radio" name="color-scheme" :value="radio.value" :aria-label="radio.label" @change="setScheme(radio.value)" v-model:checked="radio.checked">
+        <div class="switcher__status"></div>
+    </fieldset>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="assets/js/switcher-auto.js"></script>
 </body>
 </html>

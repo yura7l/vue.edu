@@ -1,4 +1,117 @@
-const lightStyles = document.querySelectorAll('link[rel=stylesheet][media*=prefers-color-scheme][media*=light]');
+const AppSwitcherAuto = {
+    data() {
+        return {
+            switcherTitle: 'Scheme',
+            lightStyles: [{
+                    href: 'assets/css/switcher/light.min.css',
+                    media: '(prefers-color-scheme: light)'
+                }],
+            darkStyles: [{
+                href: 'assets/css/switcher/dark.min.css',
+                media: '(prefers-color-scheme: dark)'
+            }],
+            switcherRadios: document.querySelectorAll('.switcher__radio'),
+            themes: [
+                {
+                    value: 'light',
+                    label: 'Light',
+                    checked: false
+                },
+                {
+                    value: 'auto',
+                    label: 'System',
+                    checked: true
+                },
+                {
+                    value: 'dark',
+                    label: 'Dark',
+                    checked: false
+                }],
+            scheme: this.setupScheme(),
+        }
+    },
+    methods: {
+        toggleSwitcher(state){
+            this.state = state
+            localStorage.setItem('switcher_state', state)
+        },
+        setupScheme() {
+            let savedScheme = this.getSavedScheme();
+            const systemScheme = this.getSystemScheme();
+
+            console.log(savedScheme, systemScheme)
+
+            if (savedScheme === null){
+                savedScheme = 'auto'
+            }else if (savedScheme !== systemScheme) {
+                this.setScheme(savedScheme);
+            }
+
+            this.setScheme(savedScheme);
+
+            return savedScheme;
+        },
+        setScheme(scheme) {
+            this.switchMedia(scheme);
+
+            for(let i in this.themes){
+                this.themes[i].checked = this.themes[i].value === scheme;
+            }
+            this.scheme = scheme
+
+            if (scheme === 'auto') {
+                this.clearScheme();
+            } else {
+                this.saveScheme(scheme);
+            }
+        },
+        switchMedia(scheme) {
+            //TODO: change this part
+            /*let lightMedia,
+                darkMedia;
+
+            if (scheme === 'auto') {
+                lightMedia = '(prefers-color-scheme: light)';
+                darkMedia = '(prefers-color-scheme: dark)';
+            } else {
+                lightMedia = (scheme === 'light') ? 'all' : 'not all';
+                darkMedia = (scheme === 'dark') ? 'all' : 'not all';
+            }
+
+            [...this.lightStyles].forEach((link) => {
+                link.media = lightMedia;
+            });
+
+            [...this.darkStyles].forEach((link) => {
+                link.media = darkMedia;
+            });*/
+        },
+        getSavedScheme(){
+            return localStorage.getItem('color-scheme');
+        },
+        saveScheme(){
+            localStorage.setItem('color-scheme', this.scheme);
+        },
+        clearScheme(){
+            localStorage.removeItem('color-scheme');
+        },
+        getSystemScheme(){
+            const darkScheme = matchMedia('(prefers-color-scheme: dark)').matches;
+
+            return darkScheme ? 'dark' : 'light';
+        }
+    },
+    computed: {
+
+    },
+    watch: {
+
+    }
+}
+
+Vue.createApp(AppSwitcherAuto).mount('#app')
+
+/*const lightStyles = document.querySelectorAll('link[rel=stylesheet][media*=prefers-color-scheme][media*=light]');
 const darkStyles = document.querySelectorAll('link[rel=stylesheet][media*=prefers-color-scheme][media*=dark]');
 const darkSchemeMedia = matchMedia('(prefers-color-scheme: dark)');
 const switcherRadios = document.querySelectorAll('.switcher__radio');
@@ -79,4 +192,4 @@ function clearScheme() {
 }
 
 setupSwitcher();
-setupScheme();
+setupScheme();*/
