@@ -66,25 +66,13 @@ const AppSwitcherAuto = {
             }
         },
         switchMedia(scheme) {
-            //TODO: change this part
-            /*let lightMedia,
-                darkMedia;
-
-            if (scheme === 'auto') {
-                lightMedia = '(prefers-color-scheme: light)';
-                darkMedia = '(prefers-color-scheme: dark)';
-            } else {
-                lightMedia = (scheme === 'light') ? 'all' : 'not all';
-                darkMedia = (scheme === 'dark') ? 'all' : 'not all';
+            if(scheme === 'auto'){
+                this.lightStyles.media = '(prefers-color-scheme: light)'
+                this.darkStyles.media = '(prefers-color-scheme: light)'
+            }else{
+                this.lightStyles.media = (scheme === 'light') ? 'all' : 'not all'
+                this.darkStyles.media = (scheme === 'dark') ? 'all' : 'not all'
             }
-
-            [...this.lightStyles].forEach((link) => {
-                link.media = lightMedia;
-            });
-
-            [...this.darkStyles].forEach((link) => {
-                link.media = darkMedia;
-            });*/
         },
         getSavedScheme(){
             return localStorage.getItem('color-scheme');
